@@ -1,0 +1,89 @@
+﻿@model IEnumerable<HelpDesk.Models.SolicitudServicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Lista de Solicitudes Asignadas</h2>
+@if (User.IsInRole("Usuario"))
+{
+    <p>
+        <a asp-action="Create">Crear una nueva solicitud</a>
+    </p>
+}
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSolicitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estadoS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tecnicoAsig)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comentarioAdicional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.comentarioTareaCompleta)
+            </th>
+            <th>
+                <label>Opciones</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSolicitud)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estadoS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tecnicoAsig)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comentarioAdicional)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.comentarioTareaCompleta)
+                </td>
+                <td>
+                    @if (User.IsInRole("Administrador"))
+                    {
+                        <a asp-action="Details" asp-route-id="@item.ID">Ver Detalles</a><b> |</b>
+                        <a asp-action="Delete" asp-route-id="@item.ID">Eliminar</a><b> |</b>
+                        <a asp-action="AsignarOtroTecnico" asp-route-id="@item.ID">Cambiar Tecnico</a>
+                    }
+                    @if (User.IsInRole("Tecnico"))
+                    {
+                        <a asp-action="Details" asp-route-id="@item.ID">Ver Detalles</a><b> |</b>
+                        <a asp-action="ServicioCompletado" asp-route-id="@item.ID">Completado</a>
+                    }
+                    @if (User.IsInRole("Usuario"))
+                    {
+                        <a asp-action="Details" asp-route-id="@item.ID">Ver Detalles</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

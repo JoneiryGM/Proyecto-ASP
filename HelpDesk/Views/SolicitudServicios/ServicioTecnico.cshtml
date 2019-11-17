@@ -1,0 +1,69 @@
+﻿@model IEnumerable<HelpDesk.Models.SolicitudServicio>
+
+@{
+    ViewData["Title"] = "ServicioTecnico";
+}
+
+<h2>Mis Asignaciones</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Solicitante)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaSolicitud)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.estadoS)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tecnicoAsig)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.comentarioAdicional)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.comentarioTareaCompleta)
+                </th>
+                <th>
+                    <label>Opciones</label>
+                </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Solicitante)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaSolicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estadoS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tecnicoAsig)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comentarioAdicional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comentarioTareaCompleta)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ID">Ver Detalles</a>
+                <a asp-action="ServicioCompletado" asp-route-id="@item.ID">Completado</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,53 @@
+﻿@model HelpDesk.Models.SolicitudServicio
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear Solicitud</h2>
+
+<h4>SolicitudServicio</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Solicitante" class="control-label"></label>
+                <input asp-for="Solicitante" class="form-control" />
+                <span asp-validation-for="Solicitante" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaSolicitud" class="control-label"></label>
+                <input asp-for="FechaSolicitud" class="form-control" />
+                <span asp-validation-for="FechaSolicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <textarea rows="4" cols="4" asp-for="Descripcion" class="form-control"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            @if (User.IsInRole("Administrador"))
+            {
+            <div class="form-group">
+                <label asp-for="estadoS" class="control-label"></label>
+                @Html.DropDownList("estadoS", new SelectList(Model.estadoSolicitudes, "Text", "Text"), "Seleccione", new { @class = "form-control" })
+                <span asp-validation-for="estadoS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="tecnicoAsig" class="control-label"></label>
+                @Html.DropDownList("tecnicoAsig", new SelectList(Model.nombreTecnicos, "Text", "Text"), "Seleccione", new { @class = "form-control" })
+                <span asp-validation-for="tecnicoAsig" class="text-danger"></span>
+            </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Crear Solicitud" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,63 @@
+﻿@model HelpDesk.Models.SolicitudServicio
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles de la Solicitud</h2>
+
+<div>
+    <h4>SolicitudServicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Solicitante)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Solicitante)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaSolicitud)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaSolicitud)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.estadoS)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.estadoS)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.tecnicoAsig)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.tecnicoAsig)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarioAdicional)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.comentarioAdicional)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.comentarioTareaCompleta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.comentarioTareaCompleta)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Administrador"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.ID">Editar</a>
+    }
+    <a asp-action="Index">Volver a la lista</a>
+</div>

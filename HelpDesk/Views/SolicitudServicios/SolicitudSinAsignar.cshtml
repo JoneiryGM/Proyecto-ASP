@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HelpDesk.Models.SolicitudServicio>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Lista de Solicitudes Sin Asignar</h2>
+<p>
+    <a asp-action="Create">Crear Nueva Solicitud</a>
+</p>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaSolicitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estadoS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tecnicoAsig)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSolicitud)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estadoS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tecnicoAsig)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Elimiar</a> |
+                    <a asp-action="AsignarTecnico" asp-route-id="@item.ID">Asignar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
